@@ -72,11 +72,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+#if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+#else
+#  export EDITOR='mvim'
+#fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -95,3 +95,13 @@ source $ZSH/oh-my-zsh.sh
 
 # Set term to enable full color support (for tmux)
 export TERM='xterm-256color'
+
+# Define function to echo colours
+colours () {
+  for i in {0..255} ; do
+      printf "\x1b[38;5;${i}m%3d " "${i}"
+      if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then
+          echo;
+      fi
+  done
+}
